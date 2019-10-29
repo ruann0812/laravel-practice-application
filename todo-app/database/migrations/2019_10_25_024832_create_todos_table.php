@@ -16,6 +16,8 @@ class CreateTodosTable extends Migration {
 			$table->string('name');
 			$table->text('description');
 			$table->boolean('completed');
+			$table->timestamp('started_at');
+			$table->timestamp('done_at');
 			$table->timestamps();
 		});
 	}
