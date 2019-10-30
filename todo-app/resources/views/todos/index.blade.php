@@ -26,9 +26,9 @@
 					  </a>
 
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					    <a class="dropdown-item" href="#">All</a>
-					    <a class="dropdown-item" href="#">Today</a>
-					    <a class="dropdown-item" href="#">Current Month</a>
+					    <a class="dropdown-item" href="/todos/filter/all">All</a>
+					    <a class="dropdown-item" href="/todos/filter/today">Today</a>
+					    <a class="dropdown-item" href="/todos/filter/this-month">Current Month</a>
 					  </div>
 					</div>
 

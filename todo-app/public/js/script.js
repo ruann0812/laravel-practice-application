@@ -7,6 +7,10 @@ $(document).ready(function(){
 	          $(this).val('0');
 	     }
 	});
+
+	$( '.start-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
+	$( '.target-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
+
 });
 
 

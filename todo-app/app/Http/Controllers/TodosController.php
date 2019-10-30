@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Todo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TodosController extends Controller {
@@ -13,9 +14,20 @@ class TodosController extends Controller {
 		return view('todos.index')->with('todos', $todos);
 	}
 
-	public function show($todoId) {
+	public function filter($filter) {
 
-		$todo = Todo::find($todoId);
+		if ($filter == "all") {
+			$todos = Todo::all();
+		} else if ($filter == "today") {
+			$todos = Todo::whereDate('started_at', '=', Carbon::today())->get();
+		} else {
+			$todos = Todo::whereMonth('started_at', '=', Carbon::now()->month)->get();
+		}
+
+		return view('todos.index')->with('todos', $todos);
+	}
+
+	public function show(Todo $todo) {
 
 		if ($todo->completed == 0) {
 			$completedFontColor = '#28a745';
@@ -38,14 +50,21 @@ class TodosController extends Controller {
 		$this->validate(request(), [
 			'name' => 'required',
 			'description' => 'required',
+			'startDate' => 'required',
+			'targetDate' => 'required',
 		]);
 
 		$data = request()->all();
+
+		$parseStartedDate = Carbon::parse($data['startDate']);
+		$parseTargetDate = Carbon::parse($data['targetDate']);
 
 		$todo = new Todo();
 
 		$todo->name = $data['name'];
 		$todo->description = $data['description'];
+		$todo->started_at = $parseStartedDate;
+		$todo->done_at = $parseTargetDate;
 		$todo->completed = false;
 
 		$todo->save();
@@ -54,15 +73,13 @@ class TodosController extends Controller {
 
 	}
 
-	public function edit($todoId) {
-
-		$todo = Todo::find($todoId);
+	public function edit(Todo $todo) {
 
 		return view('todos.edit')->with('todo', $todo);
 
 	}
 
-	public function update($todoId, Request $req) {
+	public function update(Todo $todo, Request $req) {
 
 		$this->validate(request(), [
 			'name' => 'required',
@@ -71,17 +88,19 @@ class TodosController extends Controller {
 
 		$data = request()->all();
 
-		$todo = Todo::find($todoId);
-
 		$completed = (!$req->has('completed') ? 0 : $data['completed']);
+		$parseStartedDate = Carbon::parse($data['startDate']);
+		$parseTargetDate = Carbon::parse($data['targetDate']);
 
 		$todo->name = $data['name'];
 		$todo->description = $data['description'];
+		$todo->started_at = $parseStartedDate;
+		$todo->done_at = $parseTargetDate;
 		$todo->completed = $completed;
 
 		$todo->save();
 
-		return redirect('/todos');
+		return redirect('/todos/' . $todo->id);
 
 	}
 

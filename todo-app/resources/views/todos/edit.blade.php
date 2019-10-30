@@ -57,6 +57,15 @@
 
 					</div>
 
+					<table class="table">
+					  <tbody>
+					    <tr>
+					      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" value="{{ date('d-M-Y', strtotime($todo->started_at)) }}"></td>
+					      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" value="{{ date('d-M-Y', strtotime($todo->done_at)) }}"></td>
+					    </tr>
+					  </tbody>
+					</table>
+
 					<div class="form-group">
 						Completed: <input type="checkbox" name="completed" class="completed-checkbox" value="{{ $todo->completed }}" {!! $todo->completed === 0 ? "" : "checked='checked'" !!}>
 					</div>

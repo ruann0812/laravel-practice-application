@@ -3,13 +3,13 @@
 
 @section('title')
 
-	Create new todo
+	Create new task
 
 @endsection
 
 @section('content')
 
-<h1 class="text-center my-5">Create Todos</h1>
+<h1 class="text-center my-5">Create Task</h1>
 
 <div class="row justify-content-center">
 
@@ -17,7 +17,7 @@
 
 		<div class="card card-default">
 
-			<div class="card-header">Create new todo</div>
+			<div class="card-header">Create new task</div>
 
 			<div class="card-body">
 
@@ -47,7 +47,7 @@
 					@csrf
 					<div class="form-group">
 
-						<input type="text" class="form-control" placeholder="Name" name="name">
+						<input type="text" class="form-control" placeholder="Name" name="name" autocomplete="off">
 
 					</div>
 
@@ -57,9 +57,18 @@
 
 					</div>
 
+					<table class="table">
+					  <tbody>
+					    <tr>
+					      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" autocomplete="off"></td>
+					      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" autocomplete="off"></td>
+					    </tr>
+					  </tbody>
+					</table>
+
 					<div class="form-group text-center">
 
-						<button type="submit" class="btn btn-success">Create Todo</button>
+						<button type="submit" class="btn btn-success">Create task</button>
 
 					</div>
 
