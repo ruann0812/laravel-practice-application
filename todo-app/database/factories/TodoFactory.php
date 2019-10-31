@@ -10,6 +10,7 @@ $factory->define(\App\Todo::class, function (Faker $faker) {
 		'name' => $faker->sentence(3),
 		'description' => $faker->paragraph(4),
 		'completed' => false,
+		'recurring' => false,
 		'started_at' => now(),
 		'done_at' => now(),
 	];

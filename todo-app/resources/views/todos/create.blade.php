@@ -47,7 +47,7 @@
 					@csrf
 					<div class="form-group">
 
-						<input type="text" class="form-control" placeholder="Name" name="name" autocomplete="off">
+						<input type="text" class="form-control" placeholder="Title" name="name" autocomplete="off">
 
 					</div>
 
@@ -57,7 +57,13 @@
 
 					</div>
 
-					<table class="table">
+					<div class="form-group">
+
+						Recurring: <input type="checkbox" name="recurring" class="recurring-checkbox">
+
+					</div>
+
+					<table class="table date-finish">
 					  <tbody>
 					    <tr>
 					      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" autocomplete="off"></td>

@@ -6,11 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TodosController extends Controller {
-	//
 
 	public function index() {
 
-		$todos = Todo::all();
+		$todos = Todo::whereDate('created_at', '=', Carbon::today())
+			->orWhere('recurring', '=', 1)->get();
 		return view('todos.index')->with('todos', $todos);
 	}
 
@@ -45,29 +45,31 @@ class TodosController extends Controller {
 		return view('todos.create');
 	}
 
-	public function store() {
+	public function store(Request $req) {
 
 		$this->validate(request(), [
 			'name' => 'required',
 			'description' => 'required',
-			'startDate' => 'required',
-			'targetDate' => 'required',
 		]);
 
 		$data = request()->all();
 
-		$parseStartedDate = Carbon::parse($data['startDate']);
-		$parseTargetDate = Carbon::parse($data['targetDate']);
+		$parseStartedDate = ($data['startDate'] == null) ? Carbon::now() : Carbon::parse($data['startDate']);
+		$parseTargetDate = ($data['targetDate'] == null) ? Carbon::now() : Carbon::parse($data['targetDate']);
+		$recurring = (!$req->has('recurring') ? 0 : $data['recurring']);
 
 		$todo = new Todo();
 
 		$todo->name = $data['name'];
 		$todo->description = $data['description'];
+		$todo->recurring = $recurring;
 		$todo->started_at = $parseStartedDate;
 		$todo->done_at = $parseTargetDate;
 		$todo->completed = false;
 
 		$todo->save();
+
+		session()->flash('success', 'Task created successfully');
 
 		return redirect('/todos');
 
@@ -100,7 +102,18 @@ class TodosController extends Controller {
 
 		$todo->save();
 
+		session()->flash('success', 'Task updated successfully');
+
 		return redirect('/todos/' . $todo->id);
+
+	}
+
+	public function complete(Todo $todo) {
+
+		$todo->completed = true;
+		$todo->save();
+
+		session()->flash('success', 'Task completed.');
 
 	}
 

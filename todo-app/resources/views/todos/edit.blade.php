@@ -3,13 +3,13 @@
 
 @section('title')
 
-	Edit todo
+	Edit task
 
 @endsection
 
 @section('content')
 
-<h1 class="text-center my-5">Edit Todos</h1>
+<h1 class="text-center my-5">Edit Task</h1>
 
 <div class="row justify-content-center">
 
@@ -17,7 +17,7 @@
 
 		<div class="card card-default">
 
-			<div class="card-header">Edit todo</div>
+			<div class="card-header">Edit task</div>
 
 			<div class="card-body">
 
@@ -56,19 +56,32 @@
 						<textarea name="description" placeholder="Description" cols="5" rows="5" class="form-control">{{ $todo->description }}</textarea>
 
 					</div>
+					@if($todo->recurring === 0)
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">Started Date</th>
+						      <th scope="col">Target Date</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" value="{{ date('d-M-Y', strtotime($todo->started_at)) }}"></td>
+						      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" value="{{ date('d-M-Y', strtotime($todo->done_at)) }}"></td>
+						    </tr>
+						  </tbody>
+						</table>
+					@endif
 
-					<table class="table">
-					  <tbody>
-					    <tr>
-					      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" value="{{ date('d-M-Y', strtotime($todo->started_at)) }}"></td>
-					      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" value="{{ date('d-M-Y', strtotime($todo->done_at)) }}"></td>
-					    </tr>
-					  </tbody>
-					</table>
+					@if($todo->complete == 0)
+						<div class="form-group">
+							Status: <a href="/todos/{{ $todo->id }}/complete" style="color:white;" class="btn btn-warning btn-sm">Complete</a>
+						</div>
+					@endif
 
-					<div class="form-group">
-						Completed: <input type="checkbox" name="completed" class="completed-checkbox" value="{{ $todo->completed }}" {!! $todo->completed === 0 ? "" : "checked='checked'" !!}>
-					</div>
+					@if($todo->recurring == 1)
+						<span style="color:Red">Recurring task</span>
+					@endif
 
 					<div class="form-group"></div>
 
