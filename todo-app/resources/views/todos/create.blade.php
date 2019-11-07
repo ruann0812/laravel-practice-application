@@ -66,8 +66,28 @@
 					<table class="table date-finish">
 					  <tbody>
 					    <tr>
-					      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" autocomplete="off"></td>
-					      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" autocomplete="off"></td>
+					      <td>
+
+						      <div class="form-group">
+						        <div class='input-group date' id='datetimepicker1'>
+						          <input type='text' class="form-control start-date" placeholder="Start Date" name="startDate" autocomplete="off" />
+						          <span class="input-group-addon">
+			                        <i class="far fa-clock"></i>
+						          </span>
+						        </div>
+						      </div>
+						  </td>
+					      <td>
+
+						      <div class="form-group">
+						        <div class='input-group date' id='datetimepicker2'>
+						          <input type='text' class="form-control target-date" placeholder="Target Date" name="targetDate" autocomplete="off" />
+						          <span class="input-group-addon">
+			                        <i class="far fa-clock"></i>
+						          </span>
+						        </div>
+						      </div>
+					      </td>
 					    </tr>
 					  </tbody>
 					</table>

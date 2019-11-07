@@ -16,10 +16,7 @@
 		<div class="col-md-10">
 
 			<div class="card card-default">
-				<div class="card-header">
-
-					Tasks
-
+				<div class="card-header bg-dark">
 					<div class="dropdown float-right">
 					  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    Filter By

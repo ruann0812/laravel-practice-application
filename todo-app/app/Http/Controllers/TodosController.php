@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TodosController extends Controller {
 
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	public function index() {
 
 		$todos = Todo::whereDate('created_at', '=', Carbon::today())
@@ -37,7 +41,9 @@ class TodosController extends Controller {
 			$completedFontColor = '#dc3545';
 		}
 
-		return view('todos.show')->with(compact('todo', 'completedFontColor'));
+		//$started_at_formatted = $todo->started_at->timezone('Asia/Manila')->format('H:i');
+		//var_dump($started_at_formatted);
+		return view('todos.show')->with(compact('todo', 'completedFontColor', '$started_at_formatted'));
 	}
 
 	public function create() {

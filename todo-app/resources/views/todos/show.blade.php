@@ -31,15 +31,15 @@
 					<table class="table">
 					  <thead>
 					    <tr>
-					      <th scope="col">Started Date</th>
-					      <th scope="col">Target Date</th>
+					      <th scope="col">Started</th>
+					      <th scope="col">Target</th>
 					      <th scope="col">Updated Date</th>
 					    </tr>
 					  </thead>
 					  <tbody>
 					    <tr>
-					      <td>{{ date('d-M-Y', strtotime($todo->started_at)) }}</td>
-					      <td>{{ date('d-M-Y', strtotime($todo->done_at)) }}</td>
+					      <td>{{ $todo->started_at }}</td>
+					      <td>{{ $todo->done_at }}</td>
 					      <td>{{ date('d-M-Y', strtotime($todo->updated_at)) }}</td>
 					    </tr>
 					  </tbody>

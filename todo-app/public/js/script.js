@@ -20,8 +20,18 @@ $(document).ready(function(){
 	     }
 	});
 
-	$( '.start-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
-	$( '.target-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
+	// $( '.start-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
+	// $( '.target-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
+
+	$(function () {
+		$('#datetimepicker1').datetimepicker({
+			format: 'LT'
+		});
+		$('#datetimepicker2').datetimepicker({
+			format: 'LT'
+		});
+	});
+
 
 });
 
