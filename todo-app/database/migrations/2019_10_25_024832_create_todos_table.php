@@ -17,8 +17,8 @@ class CreateTodosTable extends Migration {
 			$table->text('description');
 			$table->boolean('completed');
 			$table->boolean('recurring');
-			$table->time('started_at')->nullable();
-			$table->time('done_at')->nullable();
+			$table->timestamp('started_at')->nullable();
+			$table->timestamp('done_at')->nullable();
 			$table->timestamps();
 		});
 	}

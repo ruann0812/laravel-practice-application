@@ -65,9 +65,29 @@
 						    </tr>
 						  </thead>
 						  <tbody>
+						  <tr>
+						  </tr>
 						    <tr>
-						      <td><input type="text" class="form-control start-date" placeholder="Start Date" name="startDate" value="{{ date('d-M-Y', strtotime($todo->started_at)) }}"></td>
-						      <td><input type="text" class="form-control target-date" placeholder="Target Date" name="targetDate" value="{{ date('d-M-Y', strtotime($todo->done_at)) }}"></td>
+						      <td>
+							      <div class="form-group">
+							        <div class='input-group date' id='datetimepicker1'>
+							          <input type='text' class="form-control start-time" name="startDate" value="{{ date('d-M-Y h:i A', strtotime($todo->started_at)) }}" autocomplete="off" />
+							          <span class="input-group-addon">
+				                        CHANGE <i class="far fa-calendar"></i>
+							          </span>
+							        </div>
+							      </div>
+						      </td>
+						      <td>
+							      <div class="form-group">
+							        <div class='input-group date' id='datetimepicker2'>
+							          <input type='text' class="form-control target-time" name="targetDate" value="{{ date('d-M-Y h:i A', strtotime($todo->done_at)) }}" autocomplete="off"/>
+							          <span class="input-group-addon">
+				                        CHANGE <i class="far fa-calendar"></i>
+							          </span>
+							        </div>
+							      </div>
+						      </td>
 						    </tr>
 						  </tbody>
 						</table>
@@ -76,6 +96,7 @@
 					@if($todo->complete == 0)
 						<div class="form-group">
 							Status: <a href="/todos/{{ $todo->id }}/complete" style="color:white;" class="btn btn-warning btn-sm">Complete</a>
+							<a href="/todos" class="btn btn-primary btn-sm">Back</a><br>
 						</div>
 					@endif
 
@@ -86,7 +107,6 @@
 					<div class="form-group"></div>
 
 					<div class="form-group text-center">
-
 						<button type="submit" class="btn btn-success">Update</button>
 
 					</div>

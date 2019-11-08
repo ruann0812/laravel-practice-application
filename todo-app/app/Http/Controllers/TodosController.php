@@ -15,6 +15,7 @@ class TodosController extends Controller {
 
 		$todos = Todo::whereDate('created_at', '=', Carbon::today())
 			->orWhere('recurring', '=', 1)->get();
+
 		return view('todos.index')->with('todos', $todos);
 	}
 

@@ -13,23 +13,22 @@ $(document).ready(function(){
 
 	    if($(this).is( ':checked' )){
 	    		$(this).val('1');
-	          $('.date-finish').fadeOut('slow');
+	          //$('.date-finish').fadeOut('slow');
 	     }else{
 	     		$(this).val('0');
-	          $('.date-finish').fadeIn('slow');
+	          //$('.date-finish').fadeIn('slow');
 	     }
 	});
 
-	// $( '.start-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
-	// $( '.target-date' ).datepicker({ dateFormat: 'dd-M-yy' }).val();
 
 	$(function () {
 		$('#datetimepicker1').datetimepicker({
-			format: 'LT'
+			format: 'DD-MMM-YYYY LT'
 		});
 		$('#datetimepicker2').datetimepicker({
-			format: 'LT'
+			format: 'DD-MMM-YYYY LT'
 		});
+
 	});
 
 
