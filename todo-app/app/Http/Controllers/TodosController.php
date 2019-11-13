@@ -14,7 +14,8 @@ class TodosController extends Controller {
 	public function index() {
 
 		$todos = Todo::whereDate('created_at', '=', Carbon::today())
-			->orWhere('recurring', '=', 1)->get();
+			->orWhere('recurring', '=', 1)
+			->orWhere('done_at', '>=', Carbon::today())->get();
 
 		return view('todos.index')->with('todos', $todos);
 	}
@@ -100,12 +101,14 @@ class TodosController extends Controller {
 		$completed = (!$req->has('completed') ? 0 : $data['completed']);
 		$parseStartedDate = Carbon::parse($data['startDate']);
 		$parseTargetDate = Carbon::parse($data['targetDate']);
+		$recurring = (!$req->has('recurring') ? 0 : $data['recurring']);
 
 		$todo->name = $data['name'];
 		$todo->description = $data['description'];
 		$todo->started_at = $parseStartedDate;
 		$todo->done_at = $parseTargetDate;
 		$todo->completed = $completed;
+		$todo->recurring = $recurring;
 
 		$todo->save();
 
@@ -118,9 +121,11 @@ class TodosController extends Controller {
 	public function complete(Todo $todo) {
 
 		$todo->completed = true;
+		var_dump('test');
 		$todo->save();
 
 		session()->flash('success', 'Task completed.');
+		return redirect('/todos');
 
 	}
 

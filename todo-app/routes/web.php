@@ -28,7 +28,7 @@ Route::get('todos/{todo}/edit', 'TodosController@edit');
 
 Route::post('todos/{todo}/update-todos', 'TodosController@update');
 
-Route::get('todos/{{ $todo->id }}/complete', 'TodosController@complete');
+Route::get('todos/{$todo}/complete', 'TodosController@complete');
 
 Auth::routes();
 

@@ -93,6 +93,14 @@
 						</table>
 					@endif
 
+					@if($todo->recurring == 0)
+						<div class="form-group">
+
+							Recurring: <input type="checkbox" name="recurring" class="recurring-checkbox">
+
+						</div>
+					@endif
+
 					@if($todo->complete == 0)
 						<div class="form-group">
 							Status: <a href="/todos/{{ $todo->id }}/complete" style="color:white;" class="btn btn-warning btn-sm">Complete</a>
